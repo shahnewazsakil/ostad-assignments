@@ -89,6 +89,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         fclose($fp);
     }
 
+    setcookie('Username', $username, time() + (86400 * 30), "/");
+
+    session_start();
+
     
 }
 
@@ -96,7 +100,6 @@ if(file_exists('./users.csv')){
     $filename = './users.csv';
     $data = [];
     
-    // open the file
     $fp = fopen($filename, 'r');
     
     if ($fp === false) {
