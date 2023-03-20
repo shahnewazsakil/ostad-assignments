@@ -1,0 +1,26 @@
+<?php
+
+// Use the employees table to answer the following questions:
+
+$sql = "SELECT * FROM employee"; // employe is table name and * means all columns are selected
+
+$sql = "SELECT name, salary FROM employee WHERE salary > 50000"; // name and salary column are selected
+
+$sql = "SELECT AVG(salary) FROM employee"; // avg salary selected
+
+$sql ="SELECT COUNT(*) FROM employee WHERE department = 'marketing'"; // all marketing employe selected
+
+$sql = "UPDATE employee SET salary = 60000 WHERE id = 1001"; // delete data where id = 1001
+
+$sql = "DELETE FROM employees WHERE salary < 30000"; // delete all data where salaray is less thank 30000
+
+
+// Use the departments table to answer the following questions:
+
+$sql = "SELECT * FROM department"; // select all from table deparment
+
+$sql = "SELECT name, manager FROM department WHERE name = 'finance'"; // select name and manager column where deparment is finance
+
+$sql = "SELECT department, COUNT(*) FROM employee GROUP BY department"; //count and group by deparment
+
+$sql ="INSERT INTO department (name, manager) VALUES ('Research', 'John Doe')"; // insert data to deparment table
