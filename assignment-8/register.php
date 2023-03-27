@@ -14,7 +14,7 @@
                 <div class="col-xl-6">
                     <div class="form-input-wrapper">
                         <h1 class="mb-4">Register Here</h1>
-                        <form action="./register.php" method="POST">
+                        <form action="./crud.php" method="POST">
                             <div class="mb-3">
                                 <label for="f_name" class="form-label">First Name</label>
                                 <input name="f_name" type="text" class="form-control" id="f_name" placeholder="First Name">

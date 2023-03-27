@@ -1,0 +1,1 @@
+Create database name = "ostad_user" and import the sql "ostad_user"
