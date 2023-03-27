@@ -3,6 +3,7 @@
 include_once './config.php';
 include_once './session.php';
 
+$id = $_POST['id'];
 
 class User{
   private $db;
@@ -26,7 +27,7 @@ class User{
 }
 
 $obj = new User();
-
+$obj->get_user($id);
 
 ?>
 
