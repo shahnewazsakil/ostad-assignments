@@ -1,3 +1,36 @@
+<?php 
+
+include_once './config.php';
+include_once './session.php';
+
+
+class User{
+  private $db;
+    
+  public function __construct()
+  {
+      $this->db = new Database();
+  }
+
+  public function get_user($id){
+    $sql = "SELECT * FROM tbl_users WHERE id = '{$id}'";
+
+    $result = mysqli_query($this->db->conn, $sql) or die("SQL Error");
+
+    if(mysqli_num_rows($result) > 0){
+      while ($row = mysqli_fetch_assoc($result)) {
+          $name = $row['first_name'];
+      }
+    }
+  }
+}
+
+$obj = new User();
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,7 +43,9 @@
 
 
     <div class="admin-dashboard">
-      <h1>Hello Admin</h1>
+      <?php if(!empty($name)) : ?>
+      <h1><?php echo $name ?></h1>
+      <?php endif; ?>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
