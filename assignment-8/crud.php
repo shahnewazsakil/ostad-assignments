@@ -73,8 +73,8 @@ class Insert{
         $password = md5($_POST['password']);
 
         if($password == "" OR $email == ""){
-            echo "All Filed Must be filled";
-            return false;
+            $msg = "All Filed Must be filled";
+            return $msg;
         }
 
         $sql = "SELECT * FROM tbl_users WHERE email = '{$email}' AND password = '{$password}'";
@@ -83,16 +83,17 @@ class Insert{
 
         if($result){
             if(mysqli_num_rows($result) > 0){
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row['id'];
-                    echo $id;
-                }
-            }
+                $row = mysqli_fetch_assoc($result);
 
-            session::set('login', true);
-            // header('Location: dashboard.php?id='.$id);
-        }else{
-            return "Email OR Password Dose not match";
+                $id = $row['id'];
+                session::set('login', true);
+                header('Location: dashboard.php?id='.$id);
+
+            }
+            else{
+                $msg = "Email OR Password Dose not match";
+                return $msg;
+            }
         }
 
     }
@@ -107,5 +108,9 @@ if(isset($_POST['submit_btn'])){
 }
 
 if(isset($_POST['login_btn'])){
-    $obj->login();
+    $feedback = $obj->login();
+
+    if(!empty($feedback)){
+        echo $feedback;
+    }
 }

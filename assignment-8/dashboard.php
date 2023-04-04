@@ -3,7 +3,7 @@
 include_once './config.php';
 include_once './session.php';
 
-$id = $_POST['id'];
+$id = $_GET['id'];
 
 class User{
   private $db;
@@ -19,15 +19,15 @@ class User{
     $result = mysqli_query($this->db->conn, $sql) or die("SQL Error");
 
     if(mysqli_num_rows($result) > 0){
-      while ($row = mysqli_fetch_assoc($result)) {
-          $name = $row['first_name'];
-      }
+      $row = mysqli_fetch_assoc($result);
+      $name = $row['first_name'];
+      return $name;
     }
   }
 }
 
 $obj = new User();
-$obj->get_user($id);
+$test = $obj->get_user($id);
 
 ?>
 
@@ -44,8 +44,8 @@ $obj->get_user($id);
 
 
     <div class="admin-dashboard">
-      <?php if(!empty($name)) : ?>
-      <h1><?php echo $name ?></h1>
+      <?php if(!empty($test)) : ?>
+      <h1>Welcome <?php echo $test ?></h1>
       <?php endif; ?>
     </div>
     
